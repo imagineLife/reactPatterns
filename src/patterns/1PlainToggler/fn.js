@@ -1,7 +1,7 @@
 import React from 'react'
 
 //The toggler HTML content is in the toggler file
-import {Switch} from '../Switch/class'
+import {Switch} from '../../Switch/class'
 
 const Toggle = () => {
   let [ on, setOn ] = React.useState(false)
