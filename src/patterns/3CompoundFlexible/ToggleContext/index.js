@@ -2,6 +2,7 @@ import React from 'react'
 
 //1 create context
 const ToggleContext = React.createContext()
+const { Provider } = ToggleContext
 
 class ToggleProvider extends React.Component{
   constructor(props){
@@ -16,14 +17,14 @@ class ToggleProvider extends React.Component{
   toggleFn(){
     this.setState({on: !this.state.on})
   }
-  
+
   render(){
-    return(<ToggleContext.Provider value={{
+    return(<Provider value={{
       on: this.state.on, 
       toggleFn: this.toggleFn
     }}>
       {this.props.children}
-    </ToggleContext.Provider>)
+    </Provider>)
   }
   
 }
