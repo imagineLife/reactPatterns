@@ -2,7 +2,7 @@ import React from 'react'
 import {Switch} from '../../Switch/class'
 
 //1. Import Context
-import { ToggleContext, ToggleProvider } from './ToggleContext'
+import { ToggleProvider, ToggleConsumer  } from './ToggleContext'
 
 /*
   GOALS HERE 
@@ -29,21 +29,21 @@ import { ToggleContext, ToggleProvider } from './ToggleContext'
 
 class Toggle extends React.Component {
   static On = ({children}) => (
-    <ToggleContext.Consumer>
+    <ToggleConsumer>
       {({on}) => (on ? children : null)}
-    </ToggleContext.Consumer>
+    </ToggleConsumer>
   )
   static Off = ({children}) => (
-    <ToggleContext.Consumer>
+    <ToggleConsumer>
       {({on}) => (on ? null : children)}
-    </ToggleContext.Consumer>
+    </ToggleConsumer>
   )
   static Button = props => (
-    <ToggleContext.Consumer>
+    <ToggleConsumer>
       {({on, toggleFn}) => (
         <Switch on={on} onClick={toggleFn} {...props} />
       )}
-    </ToggleContext.Consumer>
+    </ToggleConsumer>
   )
     
   render() {
