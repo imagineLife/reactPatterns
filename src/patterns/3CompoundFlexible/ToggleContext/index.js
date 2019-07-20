@@ -16,9 +16,13 @@ class ToggleProvider extends React.Component{
   toggleFn(){
     this.setState({on: !this.state.on})
   }
+  
   render(){
-    return(<ToggleContext.Provider value={{on, toggleFn: this.toggleFn}}>
-      {props.children}
+    return(<ToggleContext.Provider value={{
+      on: this.state.on, 
+      toggleFn: this.toggleFn
+    }}>
+      {this.props.children}
     </ToggleContext.Provider>)
   }
   
