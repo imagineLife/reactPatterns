@@ -2,7 +2,7 @@ import React from 'react'
 
 //1 create context
 const ToggleContext = React.createContext()
-const { Provider } = ToggleContext
+const { Provider, Consumer } = ToggleContext
 
 class ToggleProvider extends React.Component{
   constructor(props){
@@ -29,4 +29,4 @@ class ToggleProvider extends React.Component{
   
 }
 
-export { ToggleContext, ToggleProvider }
+export { ToggleContext, ToggleProvider, Consumer as ToggleConsumer }
