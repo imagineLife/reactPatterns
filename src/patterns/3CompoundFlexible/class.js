@@ -62,7 +62,11 @@ function Usage({
     <Toggle onToggle={onToggle}>
       <Toggle.On>The button is on</Toggle.On>
       <Toggle.Off>The button is off</Toggle.Off>
-      <div>
+      <div style={{
+        backgroundColor: 'orange', 
+        width: '100%', 
+        padding: '20px 0'
+      }}>
         <Toggle.Button />
       </div>
     </Toggle>
