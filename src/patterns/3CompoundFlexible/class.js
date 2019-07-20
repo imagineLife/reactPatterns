@@ -20,43 +20,61 @@ import { ToggleContext } from './ToggleContext'
   PROCESS
   Introduce a context to hold the state && pass 
   stateful vals to children as needed
-  
+
 */
 
 
 
+// Flexible Compound Components with context
+
 class Toggle extends React.Component {
-  
-  static On = ({on, children}) => (on ? children : null)
-  static Off = ({on, children}) => (on ? null : children)
-  static Button = ({on, toggle, ...props}) => (
-    <Switch on={on} onClick={toggle} {...props} />
+  static On = ({children}) => (
+    <ToggleContext.Consumer>
+      {({on}) => (on ? children : null)}
+    </ToggleContext.Consumer>
   )
-  
+  static Off = ({children}) => (
+    <ToggleContext.Consumer>
+      {({on}) => (on ? null : children)}
+    </ToggleContext.Consumer>
+  )
+  static Button = props => (
+    <ToggleContext.Consumer>
+      {({on, toggle}) => (
+        <Switch on={on} onClick={toggle} {...props} />
+      )}
+    </ToggleContext.Consumer>
+  )
   state = {on: false}
-  
   toggle = () =>
-    this.setState({on: !this.state.on})
-  
+    this.setState(
+      ({on}) => ({on: !on}),
+      () => this.props.onToggle(this.state.on),
+    )
   render() {
-    return React.Children.map(this.props.children, child =>
-      React.cloneElement(child, {
-        on: this.state.on,
-        toggle: this.toggle,
-      }),
+    return (
+      <ToggleContext.Provider
+        value={{on: this.state.on, toggle: this.toggle}}
+      >
+        {this.props.children}
+      </ToggleContext.Provider>
     )
   }
 }
 
-function Usage() {
+function Usage({
+  onToggle = (...args) => console.log('onToggle', ...args),
+}) {
   return (
-    <Toggle>
-      <Toggle.Button />
+    <Toggle onToggle={onToggle}>
       <Toggle.On>The button is on</Toggle.On>
       <Toggle.Off>The button is off</Toggle.Off>
+      <div>
+        <Toggle.Button />
+      </div>
     </Toggle>
   )
 }
-Usage.title = 'Compound Components'
+Usage.title = 'Flexible Compound Components'
 
 export {Toggle, Usage}
