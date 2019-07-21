@@ -18,15 +18,22 @@ import { ToggleProvider, ToggleConsumer  } from './ToggleContext'
 
 
   PROCESS
-  Introduce a context to hold the state && pass 
+  1. Introduce a context to hold the state && pass 
   stateful vals to children as needed
+
+  2. Import Context Provider && Consumer
+
+  3. Wrap the etnire return statement content in the Provider 
+    typical context
+
+  4. assign the compound Components as fns
+
+  5. Wrap the compound components returned content 
+    in Context Consumers 
 
 */
 
-
-
 // Flexible Compound Components with context
-
 class Toggle extends React.Component {
   static On = ({children}) => (
     <ToggleConsumer>
