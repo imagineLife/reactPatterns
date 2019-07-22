@@ -1,11 +1,24 @@
 import React from 'react'
 
-//1 create context
+/*
+  CURRENTLY:
+  Any time the VALUE prop content changes in the Provider,
+  the consumers re-render.
+  
+  PROBLEM: This causes re-renders where components don't need
+    to re-render.
+
+  
+*/
 const ToggleContext = React.createContext()
 const { Provider, Consumer } = ToggleContext
 
 class ToggleProvider extends React.Component{
-
+  constructor(props){
+    super(props)
+    this.toggleFn = this.toggleFn.bind(this)
+  }
+  
   state = {
     on: false,
     toggleFn: this.toggleFn
@@ -14,7 +27,7 @@ class ToggleProvider extends React.Component{
   toggleFn(){
     this.setState({on: !this.state.on})
   }
-  
+
   render(){
     return(<Provider value={{
       on: this.state.on, 
