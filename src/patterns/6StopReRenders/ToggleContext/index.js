@@ -8,8 +8,13 @@ import React from 'react'
   PROBLEM: This causes re-renders where components don't need
     to re-render.
 
-  
+  FIX:
+  put the toggle fn in the state.
+    USUALLY this is odd.
+    but for a provider value, this works well to avoid un-necessary
+      re-rendering 
 */
+
 const ToggleContext = React.createContext()
 const { Provider, Consumer } = ToggleContext
 
@@ -18,14 +23,14 @@ class ToggleProvider extends React.Component{
     super(props)
     this.toggleFn = this.toggleFn.bind(this)
   }
-  
-  state = {
-    on: false,
-    toggleFn: this.toggleFn
-  }
 
   toggleFn(){
     this.setState({on: !this.state.on})
+  }
+
+  state = {
+    on: false,
+    toggleFn: this.toggleFn
   }
 
   render(){

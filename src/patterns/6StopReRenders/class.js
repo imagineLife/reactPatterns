@@ -52,6 +52,17 @@ class Toggle extends React.Component {
       )}
     </ToggleConsumer>
   )
+
+  static oddBall = props => {
+    console.log('Rendering oddball');
+    return (
+    <ToggleConsumer>
+    { (val) => (
+      <p>OddBal consumer Component</p>)
+    }
+    </ToggleConsumer>
+  )
+  }
     
   render() {
     return (
@@ -75,6 +86,7 @@ function Usage({
         padding: '20px 0'
       }}>
         <Toggle.Button />
+        <Toggle.oddBall />
       </div>
     </Toggle>
   )
