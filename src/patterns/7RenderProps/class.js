@@ -40,16 +40,16 @@ class Toggle extends React.Component {
     )
   }
   
-  renderUI(){
+  renderUI(Provider, kids){
     return(
-      <ToggleProvider>
-        {this.props.children}
-      </ToggleProvider>
+      <Provider>
+        {kids}
+      </Provider>
     )
   }
 
   render() {
-    return this.renderUI()
+    return this.renderUI(ToggleProvider, this.props.children)
   }
 }
 
