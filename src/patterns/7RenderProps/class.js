@@ -9,6 +9,14 @@ import { ToggleProvider, ToggleConsumer  } from './ToggleContext'
 
 */
 
+const renderUI = (Provider, kids) => {
+  return(
+    <Provider>
+      {kids}
+    </Provider>
+  )
+}
+
 // Flexible Compound Components with context
 class Toggle extends React.Component {
   static On = ({children}) => (
@@ -39,17 +47,9 @@ class Toggle extends React.Component {
       </ToggleConsumer>
     )
   }
-  
-  renderUI(Provider, kids){
-    return(
-      <Provider>
-        {kids}
-      </Provider>
-    )
-  }
 
   render() {
-    return this.renderUI(ToggleProvider, this.props.children)
+    return renderUI(ToggleProvider, this.props.children)
   }
 }
 
